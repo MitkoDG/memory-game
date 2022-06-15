@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.gameGrid');
     const attemptHolder = document.querySelector('.attemptsHolder')
     const foundHolder = document.querySelector('.foundHolder');
+    const restartBtn = document.getElementById('restartBtn').addEventListener('click', gameReset)
     let cardsInGame = 10;
 
     let attempts = 0;
@@ -108,6 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let chosenCards = [];
     let chosenCardsIds = [];
+
+    function gameReset() {
+        grid.replaceChildren('')
+        attempts = 0;
+        foundCards = 0;
+        attemptHolder.textContent = 0;
+        foundHolder.textContent = 0;
+        initiateBoard()
+    }
 
     function initiateBoard() {
         for (let i = 0; i < cardsList.length; i++) {
