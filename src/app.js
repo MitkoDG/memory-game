@@ -81,31 +81,77 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'mario',
             image: '../images/mario.png'
         },
-        {
-            name: 'dora',
-            image: '../images/dora.png'
-        },
-        {
-            name: 'dora',
-            image: '../images/dora.png'
-        },
-        {
-            name: 'blank',
-            image: '../images/blank.png'
-        }
+        // {
+        //     name: 'dora',
+        //     image: '../images/dora.png'
+        // },
+        // {
+        //     name: 'dora',
+        //     image: '../images/dora.png'
+        // },
+        // {
+        //     name: 'blank',
+        //     image: '../images/blank.png'
+        // }
     ];
-
+    
     cardsList.sort(() => 0.5 - Math.random());
-
     const grid = document.querySelector('.gameGrid');
+    const attemptHolder = document.querySelector('.attemptsHolder')
+    const foundHolder = document.querySelector('.foundHolder');
+
+    let cardsInGame = 10;
+    let attempts = 0;
+    let foundCards = 0;
+    attemptHolder.textContent = attempts;
+    foundHolder.textContent = foundCards;
+
+    let chosenCards = [];
+    let chosenCardsIds = [];
 
     function initiateBoard() {
         for (let i = 0; i < cardsList.length; i++) {
             let card = document.createElement('img');
             card.setAttribute('src', '../images/blank.png');
             card.setAttribute('data-id', i); // i is the id from the loop
-            // card.addEventListener('click', flipCard);
+            card.addEventListener('click', flipCard);
             grid.appendChild(card);
+        }
+    }
+
+    function flipCard() {
+        console.log('flipFunc');
+        if (chosenCards.length != 2) {
+            let cardId = this.getAttribute('data-id');
+            if (this.getAttribute('src') != '../images/blank.png') {
+                chosenCards.push(cardsList[cardId].name);
+                chosenCardsIds.push(cardId);
+                this.setAttribute('src', cardsList[cardId].image);
+                if (chosenCards.lenght == 2) {
+                    setTimeout(checkForMatch, 400);
+                }
+            }
+        }
+
+    }
+
+    function checkForMatch() {
+        attempts++;
+        let cards = document.querySelectorAll('img');
+        let firstCard = chosenCardsIds[0];
+        let secondCard = chosenCardsIds[1];
+        if (chosenCards[0] == chosenCards[1]) {
+            foundCards++;
+            cards[firstCard].setAttribute('src', '../images/blank.png')
+            cards[secondCard].setAttribute('src', '../images/blank.png')
+        }
+        chosenCards = [];
+        chosenCardsIds = [];
+        attemptHolder.textContent = attempts;
+        foundHolder.textContent = foundCards;
+
+        if (foundCards == cardsInGame) {
+            alert('Well done !')
         }
     }
 
