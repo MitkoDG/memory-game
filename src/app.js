@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
 
     const cardsList = [
         {
@@ -93,7 +93,22 @@ document.addEventListener('DOMContentLoaded', () =>{
             name: 'blank',
             image: '../images/blank.png'
         }
-    ]
+    ];
 
+    cardsList.sort(() => 0.5 - Math.random());
+
+    const grid = document.querySelector('.gameGrid');
+
+    function initiateBoard() {
+        for (let i = 0; i < cardsList.length; i++) {
+            let card = document.createElement('img');
+            card.setAttribute('src', '../images/blank.png');
+            card.setAttribute('data-id', i); // i is the id from the loop
+            // card.addEventListener('click', flipCard);
+            grid.appendChild(card);
+        }
+    }
+
+    initiateBoard()
 
 })
