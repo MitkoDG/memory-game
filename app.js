@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let cards = document.querySelectorAll('img');
         let firstCard = chosenCardsIds[0];
         let secondCard = chosenCardsIds[1];
-        console.log(chosenCards);
 
         if (firstCard == secondCard) {
             cards[firstCard].setAttribute('src', 'images/javascript.png')
