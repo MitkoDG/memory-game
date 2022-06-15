@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "ddg-personal"
+  },
+  "targets": {
+    "ddg-personal": {
+      "hosting": {
+        "memory": [
+          "memory-ddg"
+        ]
+      }
+    }
+  },
+  "hosting": {
+    "site": "memory-ddg",
+    "public": "build"
+  }
+}

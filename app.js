@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //     image: 'images/blank.png'
         // }
     ];
-    
+
     cardsList.sort(() => 0.5 - Math.random());
     const grid = document.querySelector('.gameGrid');
     const attemptHolder = document.querySelector('.attemptsHolder')
@@ -136,8 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 chosenCards.push(cardsList[cardId].name);
                 chosenCardsIds.push(cardId);
                 this.setAttribute('src', cardsList[cardId].image);
-                console.log(chosenCards);
-                console.log(cardsList[cardId].image);
+
                 if (chosenCards.length == 2) {
                     setTimeout(checkForMatch, 400);
                 }
@@ -147,14 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkForMatch() {
-        console.log('check');
         attempts++;
         let cards = document.querySelectorAll('img');
         let firstCard = chosenCardsIds[0];
         let secondCard = chosenCardsIds[1];
         console.log(chosenCards);
 
-        if (chosenCards[0] == chosenCards[1]) {
+        if (firstCard == secondCard) {
+            cards[firstCard].setAttribute('src', 'images/javascript.png')
+            cards[secondCard].setAttribute('src', 'images/javascript.png')
+            alert('You`ve clicked on the same image!')
+        } else if (chosenCards[0] == chosenCards[1]) {
             foundCards++;
             cards[firstCard].setAttribute('src', 'images/check.png')
             cards[secondCard].setAttribute('src', 'images/check.png')
@@ -166,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chosenCardsIds = [];
         attemptHolder.textContent = attempts;
         foundHolder.textContent = foundCards;
-        console.log(foundCards);
         if (foundCards == cardsInGame) {
             alert('Well done !')
         }
