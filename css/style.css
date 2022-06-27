@@ -1,9 +1,9 @@
-.pageContainer{
+.pageContainer {
     width: 750px;
     margin: 0 auto;
 }
 
-.gameGrid{
+.gameGrid {
     display: flex;
     flex-wrap: wrap;
     height: 600px;
@@ -11,7 +11,20 @@
     border: 1px solid black;
 }
 
-.gameGrid img{
+.gameGrid img {
     width: 150px;
     height: 150px;
+}
+
+#restartBtn {
+    color: black;
+    border-radius: 28px;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+#restartBtn:hover{
+    background-color: rgb(230, 178, 157);
+    color: green;
+    text-decoration: dashed;
 }
